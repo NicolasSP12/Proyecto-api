@@ -15,6 +15,19 @@ const getPokemonInfo = (id) => {
     
 }
 
+let searching = (allPokemons, pokemonSearch) => {
+    //console.log(allPokemons, pokemonSearch)
+    // let pokemonFound = allPokemons.filter((pokemon)=>{
+    //     console.log(pokemon.name, pokemonSearch)
+    //     pokemon.name === pokemonSearch
+    // })
+    // console.log(pokemonFound)
+    let pokemonFound = allPokemons.filter((pokemon)=>{
+        return pokemon.name.toLocaleLowerCase().includes(pokemonSearch.toLocaleLowerCase())
+    })
+    console.log(pokemonFound)
+} 
+
 function createPokemon( Pokemones ){
     Pokemones.results.forEach(pokemon => {
         const col = document.createElement("div")
@@ -50,11 +63,18 @@ function createPokemon( Pokemones ){
             .then(data => {
                 //console.log(data.sprites.front_default)
                 name.innerText = data.name
-                type.innerText = data.types[0].type.name
+                type.innerText = data.types[0].type.name 
                 id.innerText = data.id
                 weight.innerText = data.weight
                 imgPokemon.setAttribute("src", data.sprites.front_default)
-
+                
+                search.addEventListener("keypress", (event)=>{
+                    pokemonContainer.innerHTML = ""    
+                    
+                    //console.log(event.target.value)
+                    searching(Pokemones.results, event.target.value)
+                })
+                // console.log(search)
                 
         })
 
