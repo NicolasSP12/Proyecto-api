@@ -1,35 +1,22 @@
 let Pokemones = []
 
-fetch("./Pokemons.json")
-    .then((res) => res.json())
-    .then((data) =>  Pokemones = data )
-    .then(()=>createPokemon(Pokemones))
-
 const pokemonContainer = document.querySelector(".container_pokemon")
 const search = document.querySelector("#search")
 
-const getPokemonInfo = (id) => {
-    let pokemonInfo = {}
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        
-    
-}
+search.addEventListener("keyup", (event)=>{
+    pokemonContainer.innerHTML = ""            
+    searching(Pokemones, event.target.value)
+})   
 
 let searching = (allPokemons, pokemonSearch) => {
-    //console.log(allPokemons, pokemonSearch)
-    // let pokemonFound = allPokemons.filter((pokemon)=>{
-    //     console.log(pokemon.name, pokemonSearch)
-    //     pokemon.name === pokemonSearch
-    // })
-    // console.log(pokemonFound)
     let pokemonFound = allPokemons.filter((pokemon)=>{
         return pokemon.name.toLocaleLowerCase().includes(pokemonSearch.toLocaleLowerCase())
     })
-    console.log(pokemonFound)
-} 
+    createPokemon(pokemonFound)
+}
 
 function createPokemon( Pokemones ){
-    Pokemones.results.forEach(pokemon => {
+    Pokemones.forEach(pokemon => {
         const col = document.createElement("div")
         col.classList.add("col-lg-3", "col-md-4", "col-sm-6", "my-2")
 
@@ -38,6 +25,7 @@ function createPokemon( Pokemones ){
 
         let cardBody = document.createElement("div")
         cardBody.classList.add("card-body")
+        cardBody.classList.add("texto_container")
 
         let name = document.createElement("p")
         name.classList.add("card-text")
@@ -45,9 +33,7 @@ function createPokemon( Pokemones ){
         let imgContainer = document.createElement("div")
         imgContainer.classList.add("img-container")
 
-        let imgPokemon = document.createElement("img")
-        //imgPokemon = data.sprites.front_default
-        //console.log(data.sprites.front_default)
+        let imgPokemon = document.createElement("img")     
 
         let type = document.createElement("p")
         type.classList.add("card-text")
@@ -58,43 +44,32 @@ function createPokemon( Pokemones ){
         let weight = document.createElement("p")
         weight.classList.add("card-text")
 
-        getPokemonInfo(pokemon.name)
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data.sprites.front_default)
-                name.innerText = data.name
-                type.innerText = data.types[0].type.name 
-                id.innerText = data.id
-                weight.innerText = data.weight
-                imgPokemon.setAttribute("src", data.sprites.front_default)
-                
-                search.addEventListener("keypress", (event)=>{
-                    pokemonContainer.innerHTML = ""    
-                    
-                    //console.log(event.target.value)
-                    searching(Pokemones.results, event.target.value)
-                })
-                // console.log(search)
-                
-        })
-
+        let abilities = document.createElement("p")
+        abilities.classList.add("card-text")
         
         pokemonContainer.appendChild(col)
         col.appendChild(cardContainer)    
         cardContainer.appendChild(imgContainer)
         cardContainer.appendChild(cardBody)
-        cardBody.appendChild(name)
         cardBody.appendChild(id)
+        cardBody.appendChild(name)
         cardBody.appendChild(type)
         cardBody.appendChild(weight)
+        cardBody.appendChild(abilities)
         imgContainer.appendChild(imgPokemon)
+        
+        name.innerText = `Name: ${pokemon.name}`
+        type.innerText = `Type(s): ${pokemon.type}`
+        id.innerText = `ID: ${pokemon.id}`
+        weight.innerText = `Weight: ${pokemon.weight}`
+        imgPokemon.setAttribute("src", pokemon.ThumbnailImage)
+        abilities.innerText = `Especial ability(s): ${pokemon.abilities}`
         
     });
 }
 
-// search.addEventListener("keypress", (event)=>{
-//     pokemonContainer.innerHTML = ""    
-//     let searching = data.filter((name) => {
-//         return name.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())    
-//     })
-// })
+
+    fetch("./Pokemons.json")
+    .then ( res => res.json())
+    .then ( data => Pokemones = data)
+    .then ( () => createPokemon(Pokemones))

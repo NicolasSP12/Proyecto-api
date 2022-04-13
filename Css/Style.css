@@ -41,6 +41,18 @@ body{
   margin: none;
   background-color: rgba(239, 130, 130, 0.935);
 }
+
+.img-container:hover{
+  height: 250px;
+  background-color: rgb(249, 93, 93);
+}
+
 .marginnt{
   margin: none;
 }
+
+.texto_container{
+  background: rgb(143, 143, 244);
+  border: 1px solid black;
+}
+
