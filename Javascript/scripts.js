@@ -28,7 +28,7 @@ function createPokemon( Pokemones ){
         cardBody.classList.add("texto_container")
 
         let name = document.createElement("p")
-        name.classList.add("card-text")
+        name.classList.add("card-text1")
 
         let imgContainer = document.createElement("div")
         imgContainer.classList.add("img-container")
@@ -36,16 +36,19 @@ function createPokemon( Pokemones ){
         let imgPokemon = document.createElement("img")     
 
         let type = document.createElement("p")
-        type.classList.add("card-text")
+        type.classList.add("card-text1")
 
         let id = document.createElement("p")
-        id.classList.add("card-text")
+        id.classList.add("card-text1")
 
         let weight = document.createElement("p")
-        weight.classList.add("card-text")
+        weight.classList.add("card-text1")
 
         let abilities = document.createElement("p")
-        abilities.classList.add("card-text")
+        abilities.classList.add("card-text1")
+
+        let weaknessContainer = document.createElement("div")
+        weaknessContainer.classList.add("card-text1")
         
         pokemonContainer.appendChild(col)
         col.appendChild(cardContainer)    
@@ -56,6 +59,7 @@ function createPokemon( Pokemones ){
         cardBody.appendChild(type)
         cardBody.appendChild(weight)
         cardBody.appendChild(abilities)
+        cardBody.appendChild(weaknessContainer)
         imgContainer.appendChild(imgPokemon)
         
         name.innerText = `Name: ${pokemon.name}`
@@ -64,6 +68,8 @@ function createPokemon( Pokemones ){
         weight.innerText = `Weight: ${pokemon.weight}`
         imgPokemon.setAttribute("src", pokemon.ThumbnailImage)
         abilities.innerText = `Especial ability(s): ${pokemon.abilities}`
+        weaknessContainer.innerText = `Weakness: ${pokemon.weakness}`
+        
         
     });
 }

@@ -1,10 +1,10 @@
 body{
-  background-color: rgb(85, 144, 189);
+  background-color: rgb(97, 185, 252);
 }
 
 .banner{
   width: 100%;
-  height: 450px;
+  height: 550px;
   display: inline-block;
   align-items: center;
   justify-content: center;
@@ -12,17 +12,13 @@ body{
 }
 .titulo_banner{
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-text-stroke: 2px black;
-  color: white;
-  font-size: 6em;
 }
 .boton_banner{
   position: absolute;
-  top: 27.5%;
+  top: 35.5%;
   left: 15%;
   right: 15%;
 }
@@ -30,6 +26,7 @@ body{
   height: 50px;
   border: 1px solid black;
   outline: none;
+  border-radius: 15px;
 }
 
 .img-container{
@@ -37,7 +34,6 @@ body{
   justify-content: center;
   align-items: center;
   align-content: center;
-  border: 3px solid black;
   margin: none;
   background-color: rgba(239, 130, 130, 0.935);
 }
@@ -53,6 +49,32 @@ body{
 
 .texto_container{
   background: rgb(143, 143, 244);
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
+.card-text1{
+  font-family: 'Times New Roman', Times, serif;
+  padding: none;
+  margin-bottom: 4px;
+  border-bottom: 1px solid black; 
+}
+
+.footerPokemon{
+  background-color: black;
+  color: white;
+  height: 100px;
+  width: 100%;
+  margin-top: 1%;
+  display: flex;
+  padding-top: 1%;
+}
+.links{
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
+.links a:link{text-decoration: none; color: white;}
+.links a:visited{ text-decoration: none; color: white}
+.links a:hover{ text-decoration: none; color: rgb(157, 157, 255); transition: 0.7s;}
+.links a:active{ text-decoration: none; color: white}
